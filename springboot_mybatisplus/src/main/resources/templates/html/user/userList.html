@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户列表</title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
+</head>
+<style>
+    body {
+        margin: 10px;
+    }
+</style>
+<body>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-radius" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-radius layui-btn-danger" lay-event="del">删除</a>
+    <a class="layui-btn layui-btn-radius" lay-event="edit">重置密码</a>
+</script>
+
+<!--                             以上是模板                       -->
+
+
+<!--多条件查询-->
+<fieldset class="table-search-fieldset">
+    <legend>搜索信息</legend>
+    <div style="margin: 10px 10px 10px 10px">
+        <form class="layui-form layui-form-pane" id="searchForm">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">登录账号</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="searchLoginName" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">真实姓名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="searchUserName" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">手机号</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="searchPhoneNumber" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button type="submit" class="layui-btn layui-btn-primary" lay-submit lay-filter="data-search-btn">
+                        <i class="layui-icon"></i> 搜 索
+                    </button>
+                    <button class="layui-btn layui-btn-primary" lay-filter="search_reset"><i class="layui-icon layui-icon-refresh"></i> 重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</fieldset>
+
+
+<!--表格模块-->
+<table class="layui-hide" id="demo" lay-filter="tbl"></table>
+
+
+<!--编辑弹出层-->
+<div id="model" style="display: none">
+    <div style="margin: 10px 10px 10px 10px" align="center">
+        <form class="layui-form layui-form-pane" id="modelForm"  lay-filter="modelForm">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">真实姓名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="userName" autocomplete="off" class="layui-input"
+                               lay-required="required" lay-verify="required">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">性别</label>
+                    <div class="layui-input-inline">
+                        <select name="sex" lay-verify="required">
+                            <option value="">请选择性别</option>
+                            <option value="0">男</option>
+                            <option value="1">女</option>
+                            <option value="2">未知</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">手机号</label>
+                    <div class="layui-input-inline">
+                        <input type="number" name="phonenumber" autocomplete="off" class="layui-input"
+                               lay-verify="phone">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">邮箱</label>
+                    <div class="layui-input-inline">
+                        <input type="email" name="email" autocomplete="off" class="layui-input" lay-verify="email">
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">部门名称</label>
+                    <div class="layui-input-inline">
+                        <select name="deptId" lay-verify="required">
+                            <option value="">请选择部门</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">状态</label>
+                    <div class="layui-input-inline">
+                        <input type="checkbox" name="status" value="0" lay-skin="switch" lay-text="ON|OFF" checked>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item" align="center">
+                <div class="layui-inline">
+                    <button type="submit" class="layui-btn layui-btn-primary" lay-submit lay-filter="data-model-btn">
+                        <i class="layui-icon layui-icon-edit"></i>修改
+                    </button>
+                    <button class="layui-btn layui-btn-primary" type="reset"><i class="layui-icon layui-icon-refresh"></i>重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+<script th:src="@{/layui/layui.js}"></script>
+<script th:src="@{/html/user/js/user.js}"></script>
+</html>
